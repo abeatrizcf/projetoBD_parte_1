@@ -78,19 +78,19 @@ server.post('/usuarios', function(req, res)  {
  * @swagger
  * /usuarios/{cpf}:
  *   get:
- *     summary: Procura por um usuario.
- *     description: Essa rota permite procurar e mostrar as informações do usuário a partir do seu cpf.
+ *     summary: Procura por um usuário.
+ *     description: Essa rota permite procurar e mostrar as informações do usuário a partir do seu CPF.
  *     parameters:
- *       - cpf : cpf
- *         in: path
- *         required: true
+ *       - in: path
+ *         name: cpf
  *         description: CPF do usuário a ser encontrado.
+ *         required: true
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: As informações referentes ao dono daquele cpf.
- *       content:
+ *         description: Informações do usuário correspondente ao CPF fornecido.
+ *         content:
  *           application/json:
  *             schema:
  *               type: object
@@ -104,9 +104,17 @@ server.post('/usuarios', function(req, res)  {
  *                 data_nascimento:
  *                   type: string
  *                   format: date
- *                   description: Data de nascimento do usuário
- *       400:
- *         description: Esse usuario não foi encontrado.
+ *                   description: Data de nascimento do usuário.
+ *       404:
+ *         description: Usuário não encontrado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensagem informando que o usuário não foi encontrado.
  */
 
 
